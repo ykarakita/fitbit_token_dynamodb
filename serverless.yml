@@ -1,0 +1,32 @@
+service: fitbit
+
+provider:
+  name: aws
+  runtime: python3.6
+  profile: myaws
+  region: ap-northeast-1
+#  environment:
+#    AWS_PROFILE: myaws
+
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "dynamodb:*" 
+      Resource:
+        Fn::Join:
+          - ""
+          - - "*"
+
+# you can add packaging information here
+#package:
+  include:
+#    - include-me.py
+    - vendored/**
+
+functions:
+  fitbit:
+    handler: handler.handler
+
+#    Define function environment variables here
+#    environment:
+#      variable2: value2

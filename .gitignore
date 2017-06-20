@@ -1,0 +1,5 @@
+/vendored/
+/.npmignore
+*.pyc
+/__pycache__
+/.serverless/
