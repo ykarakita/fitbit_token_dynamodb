@@ -17,16 +17,31 @@ provider:
           - ""
           - - "*"
 
-# you can add packaging information here
-#package:
+package:
   include:
-#    - include-me.py
     - vendored/**
+    - mymodule/**
+    - handler.py
+  exclude:
+    - requirements.txt
+    - serverless.yml
 
 functions:
   fitbit:
     handler: handler.handler
 
-#    Define function environment variables here
-#    environment:
-#      variable2: value2
+resources:
+  Resources:
+    usersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: fitbit_test 
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
