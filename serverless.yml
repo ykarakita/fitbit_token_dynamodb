@@ -8,6 +8,7 @@ provider:
 #  environment:
 #    AWS_PROFILE: myaws
 
+
   iamRoleStatements:
     - Effect: "Allow"
       Action:
